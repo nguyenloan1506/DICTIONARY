@@ -1,4 +1,2 @@
-noun	truong hoc
-dictionary	/'dik∫ənri/
-noun	tu dien
-noun	ngoi nha
+noun		
+noun		

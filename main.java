@@ -10,5 +10,7 @@ public class main {
         DictionaryManagement.remove_word(vocab);
         DictionaryCommandline.showAllWords();
         DictionaryManagement.dictionaryExportToFile();
+        DictionaryManagement.dictionaryLookup();
+        DictionaryCommandline.dictionarySearch();
     }
 }
