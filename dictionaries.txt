@@ -1,4 +1,4 @@
-houses	ngoi nha
-transport	phuong tien
-translate	dich
-city	thanh pho
+noun	truong hoc
+dictionary	/'dik∫ənri/
+noun	tu dien
+noun	ngoi nha

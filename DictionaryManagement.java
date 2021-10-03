@@ -1,11 +1,10 @@
-import java.util.Locale;
 import java.util.Scanner;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.BufferedWriter;
 
-public class DictionaryManagement {
+public class DictionaryManagement extends Dictionary {
 
     /**
      * hàm insertFromCommandLine (phiên bản từ điển sơ khai).
@@ -74,15 +73,11 @@ public class DictionaryManagement {
     }
     */
 
-    /**
-     * đã sửa lỗi không phân biệt chữ hoa chữ thường.
-     */
     public static void dictionaryLookup() {
         boolean kt = false;
-        System.out.println("Nhap tu can search: ");
+        System.out.println("Nhap tu can seach: ");
         Scanner sc = new Scanner(System.in);
         String key = sc.nextLine();
-        key = key.toLowerCase();
         for (int i = 0; i < Dictionary.word.size(); i++) {
             if (Dictionary.word.get(i).getWord_target().equals(key) == true) {
                 kt = true;
@@ -103,28 +98,19 @@ public class DictionaryManagement {
      * @param meaning
      */
     public static void fix_word(Word vocab, String newword, String meaning) {
-        for(Word w: Dictionary.word) {
-            if (w.getWord_target().equals(vocab) == true) {
-                w.setWord_target(newword);
-                w.setWord_explain(meaning);
-            }
-        }
+        vocab.setWord_target(newword);
+        vocab.setWord_explain(meaning);
     }
 
     /**
      * hàm xóa từ (command line cai tien 2).
      */
     public static void remove_word(String vocab) {
-        boolean kt = false;
         for (int i = 0; i < Dictionary.word.size(); i++) {
             if(Dictionary.word.get(i).getWord_target().equals(vocab) == true) {
-                kt = true;
                 Dictionary.word.remove(i);
                 return;
             }
-        }
-        if (kt == false) {
-            System.out.println("\n Tu vung chua duoc cap nhat");
         }
     }
 
@@ -135,9 +121,9 @@ public class DictionaryManagement {
         try{
             FileWriter file_write = new FileWriter("C:\\Users\\TTT\\IdeaProjects\\BTL\\src\\dictionaries.txt");
             BufferedWriter buffer_write = new BufferedWriter(file_write);
-            for(Word w: Dictionary.word) {
+            for(Word w:word) {
                 buffer_write.write(w.toString());
-                buffer_write.newLine(); // sau khi in het tinh nang cua 1 tu thi xuong dong
+                buffer_write.newLine();
             }
             buffer_write.close();
             file_write.close();
@@ -145,28 +131,4 @@ public class DictionaryManagement {
 
         }
     }
-
-    /**
-     * hàm dictionarySearcher.
-     */
-    public static void dictionarySearch () {
-        System.out.println("\n nhap tu can tim kiem: ");
-        Scanner sc = new Scanner(System.in);
-        String s = sc.nextLine();
-        s = s.toLowerCase();
-        int n = s.length();
-        int dem = 0;
-        for(int i = 0; i<Dictionary.word.size(); i++){
-            String s1 = Dictionary.word.get(i).getWord_target();
-            int j = s1.indexOf(s);
-            if(j == 0){
-                System.out.println(s1);
-                dem++;
-            }
-        }
-        if(dem==0){
-            System.out.println("\n khong co tu nao bat dau bang "+s);
-        }
-    }
-
 }
